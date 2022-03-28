@@ -13,11 +13,21 @@
 # testing
 /coverage
 /admin-panel/coverage
+
+/api/node_modules
+/client/node_modules
+/x
+# testing
+/coverage
+45481d119bc2586a1d28db5fe
 /api/coverage
 /client/coverage
 # production
 /build
+<<<<<<< HEAD
 /admin-panel/build
+=======
+
 /api/build
 /client/build
 # misc
