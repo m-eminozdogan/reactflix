@@ -4,15 +4,22 @@
 /node_modules
 /.pnp
 .pnp.js
-.env
+/admin-panel/node_modules
+/api/node_modules
+/client/node_modules
 
 # testing
 /coverage
-
+/admin-panel/coverage
+/api/coverage
+/client/coverage
 # production
 /build
-
+/admin-panel/build
+/api/build
+/client/build
 # misc
+.env
 .DS_Store
 .env.local
 .env.development.local
