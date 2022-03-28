@@ -4,19 +4,20 @@
 /node_modules
 /.pnp
 .pnp.js
-/adminpanel/node_modules
-/adminpanel/.gitefilehere
+/admin-panel/node_modules
+/admin-panel/.gitefilehere
 /api/node_modules
 /client/node_modules
 /x
+/adminpanel
 # testing
 /coverage
-/adminpanel/coverage
+/admin-panel/coverage
 /api/coverage
 /client/coverage
 # production
 /build
-/adminpanel/build
+/admin-panel/build
 /api/build
 /client/build
 # misc
