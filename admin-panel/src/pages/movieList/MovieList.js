@@ -1,42 +1,40 @@
-import "./productList.css";
+import "./movieList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
-import { productRows } from "../../fakeData";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-export default function ProductList() {
-  const [data, setData] = useState(productRows);
+import { useContext, useEffect, useState } from "react";
+import { MovieContext } from "../../context/movieContext/MovieContext";
+import { deleteMovie, getMovies } from "../../context/movieContext/apiCalls";
+export default function MovieList() {
+  const { movies, dispatch } = useContext(MovieContext);
 
+  useEffect(() => {
+    getMovies(dispatch);
+  }, [dispatch]);
+ // console.log(movies);
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    deleteMovie(dispatch,id);
   };
+
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "_id", headerName: "ID", width: 90 },
     {
-      field: "product",
-      headerName: "Product",
+      field: "movie",
+      headerName: "Movie",
       width: 200,
       renderCell: (params) => {
         return (
           <div className="productListItem">
             <img className="productListImg" src={params.row.img} alt="" />
-            {params.row.name}
+            {params.row.title}
           </div>
         );
       },
     },
-    { field: "stock", headerName: "Stock", width: 170 },
-    {
-      field: "status",
-      headerName: "Status",
-      // type: "number",
-      width: 150,
-    },
-    {
-      field: "price",
-      headerName: "Price",
-      width: 150,
-    },
+    { field: "genre", headerName: "Genre", width: 150 },
+    { field: "year", headerName: "Year", width: 150 },
+    { field: "limit", headerName: "Age", width: 150 },
+
     {
       field: "action",
       headerName: "Action",
@@ -49,7 +47,7 @@ export default function ProductList() {
             </Link>
             <DeleteOutline
               className="productListDelete"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row._id)}
             />
           </>
         );
@@ -60,11 +58,12 @@ export default function ProductList() {
     <div className="productList">
       <DataGrid
         disableSelectionOnClick
-        rows={data}
+        rows={movies}
         columns={columns}
-        pageSize={5}
+        pageSize={10}
         rowsPerPageOptions={[5]}
         checkboxSelection
+        getRowId={(r) => r._id}
       />
     </div>
   );

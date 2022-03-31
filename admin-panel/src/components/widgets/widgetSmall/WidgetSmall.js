@@ -12,7 +12,7 @@ export default function WidgetSmall() {
         const res = await axios.get("/users?new=true", {
           headers: {
             token:
-              "bryr eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2NhNzFjMDdmZDhkMzdiOWM4NDQ2YyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0ODQ5NDA3MywiZXhwIjoxNjQ4NzUzMjczfQ.IJn4Rio2bLAlMCIf8xLku5p_z9is49RwqV37qyJO5E4",
+              "Bearer " + JSON.parse(localStorage.getItem("user")).accessToken,
           },
         });
         setNewUsers(res.data);
@@ -26,7 +26,7 @@ export default function WidgetSmall() {
     <div className="widgetSmall">
       <span className="widgetSmallTitle">New Members</span>
       <ul className="widgetSmallList">
-        {newUsers.map((user,i) => (
+        {newUsers.map((user, i) => (
           <li key={i} className="widgetSmallListItem">
             <img
               src={

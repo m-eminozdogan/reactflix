@@ -1,13 +1,11 @@
 import { Language, NotificationsNone, Settings } from "@material-ui/icons";
-import { Navigate } from "react-router-dom";
 import "./topbar.css";
 
 export default function Topbar() {
-  function handleLogout(e) {
-    e.preventDefault();
+  const handleLogout = () => {
     localStorage.setItem("user", null);
-    <Navigate to="/login" />;
-  }
+    document.location.reload();
+  };
   return (
     <div className="topbar">
       <div className="topbarWrapper">
@@ -27,7 +25,7 @@ export default function Topbar() {
             <Settings />
           </div>
           <img
-            onClick={handleLogout}
+            onClick={() => handleLogout()}
             src="https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
             alt=""
             className="topAvatar"
