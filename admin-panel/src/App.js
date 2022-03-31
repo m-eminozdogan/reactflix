@@ -7,6 +7,7 @@ import {
   BrowserRouter as Router,
   Routes,
   Navigate,
+  useNavigate,
 } from "react-router-dom";
 import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
@@ -15,37 +16,65 @@ import ProductList from "./pages/productList/ProductList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/login/Login";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "./context/authContext/AuthContext";
 
 function App() {
-  const { user } = useContext(AuthContext);
+ const { user } = useContext(AuthContext);
+
+  const LoginCheck = ({ children }) => {
+    return user ? children : "";
+  };
 
   return (
-    <Router>
-      <div className="App">
-        {window.location.pathname !== "/login" ? <Topbar /> : ""}
-        <div className="container">
-          {window.location.pathname !== "/login" ? <Sidebar /> : ""}
-          <Routes>
-            <Route
-              path="/"
-              element={user ? <Home /> : <Navigate to="/login" />}
-            />
-            <Route
-              path="/login"
-              element={!user ? <Login /> : <Navigate to="/" />}
-            />
-            <Route path="/users" element={<UserList />} />
-            <Route path="/user/:userId" element={<User />} />
-            <Route path="/newUser" element={<NewUser />} />
-            <Route path="/product/:productId" element={<Product />} />
-            <Route path="/newProduct" element={<NewProduct />} />
-            <Route path="/movies" element={<ProductList />} />
-          </Routes>
+    <>
+      <Router>
+        <div className="App">
+          <LoginCheck>
+            <Topbar />
+          </LoginCheck>
+          <div className="container">
+            <LoginCheck>
+              <Sidebar />
+            </LoginCheck>
+            <Routes>
+              <Route
+                path="/"
+                element={user ? <Home /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/login"
+                element={!user ? <Login /> : <Navigate to="/" />}
+              />
+              <Route
+                path="/users"
+                element={user ? <UserList /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/user/:userId"
+                element={user ? <User /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/newUser"
+                element={user ? <NewUser /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/product/:productId"
+                element={user ? <Product /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/newProduct"
+                element={user ? <NewProduct /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/movies"
+                element={user ? <ProductList /> : <Navigate to="/login" />}
+              />
+            </Routes>
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </>
   );
 }
 
