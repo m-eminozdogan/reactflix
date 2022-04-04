@@ -11,9 +11,9 @@ export default function MovieList() {
   useEffect(() => {
     getMovies(dispatch);
   }, [dispatch]);
- // console.log(movies);
+  // console.log(movies);
   const handleDelete = (id) => {
-    deleteMovie(dispatch,id);
+    deleteMovie(dispatch, id);
   };
 
   const columns = [
@@ -42,7 +42,10 @@ export default function MovieList() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/product/" + params.row.id}>
+            <Link
+              state={{ movie: params.row }}
+              to={{ pathname: "/movie/" + params.row._id }}
+            >
               <button className="productListEdit">Edit</button>
             </Link>
             <DeleteOutline

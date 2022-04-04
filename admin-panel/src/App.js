@@ -12,7 +12,7 @@ import UserList from "./pages/userList/UserList";
 import User from "./pages/user/User";
 import NewUser from "./pages/newUser/NewUser";
 import MovieList from "./pages/movieList/MovieList";
-import Product from "./pages/product/Product";
+import Movie from "./pages/movie/Movie";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/login/Login";
 import { useContext } from "react";
@@ -58,8 +58,8 @@ function App() {
                 element={user ? <NewUser /> : <Navigate to="/login" />}
               />
               <Route
-                path="/product/:productId"
-                element={user ? <Product /> : <Navigate to="/login" />}
+                path="/movie/:movieId"
+                element={user ? <Movie /> : <Navigate to="/login" />}
               />
               <Route
                 path="/newProduct"
