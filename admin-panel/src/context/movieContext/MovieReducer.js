@@ -38,6 +38,27 @@ const MovieReducer = (state, action) => {
         isFetching: false,
         error: true,
       };
+    ///UPDATE MOVIE
+    case "UPDATE_MOVIE_START":
+      return {
+        ...state,
+        isFetching: true,
+        error: false,
+      };
+    case "UPDATE_MOVIE_SUCCESS":
+      return {
+        movies: state.movies.map(
+          (movie) => movie._id === action.payload._id && action.payload
+        ),
+        isFetching: false,
+        error: false,
+      };
+    case "UPDATE_MOVIE_FAIL":
+      return {
+        ...state,
+        isFetching: false,
+        error: true,
+      };
     ///DELETING MOVIE
     case "DELETE_MOVIE_START":
       return {
