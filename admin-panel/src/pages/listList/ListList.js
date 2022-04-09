@@ -4,7 +4,7 @@ import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { ListContext } from "../../context/listContext/ListContext";
-import { getLists } from "../../context/listContext/apiCalls";
+import { deleteList, getLists } from "../../context/listContext/apiCalls";
 export default function ListList() {
   const { lists, dispatch } = useContext(ListContext);
 
@@ -13,7 +13,7 @@ export default function ListList() {
   }, [dispatch]);
   // console.log(movies);
    const handleDelete = (id) => {
-  //   deleteMovie(dispatch, id);
+    deleteList(dispatch, id);
    };
 
   const columns = [

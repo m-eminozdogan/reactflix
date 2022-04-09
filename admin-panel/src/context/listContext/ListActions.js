@@ -31,14 +31,14 @@ export const getListsFail = () => ({
 // export const updateMovieFail = () => ({
 //   type: "UPDATE_MOVIE_FAIL",
 // });
-// ///DELETE MOVIE
-// export const deleteMovieStart = () => ({
-//   type: "DELETE_MOVIE_START",
-// });
-// export const deleteMovieSuccess = (id) => ({
-//   type: "DELETE_MOVIE_SUCCESS",
-//   payload: id,
-// });
-// export const deleteMovieFail = () => ({
-//   type: "DELETE_MOVIE_FAIL",
-// });
+///DELETE MOVIE
+export const deleteListStart = () => ({
+  type: "DELETE_LIST_START",
+});
+export const deleteListSuccess = (id) => ({
+  type: "DELETE_LIST_SUCCESS",
+  payload: id,
+});
+export const deleteListFail = () => ({
+  type: "DELETE_LIST_FAIL",
+});
