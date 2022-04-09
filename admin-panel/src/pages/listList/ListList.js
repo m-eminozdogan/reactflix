@@ -1,39 +1,26 @@
-import "./movieList.css";
+import "./listList.css";
 import { DataGrid } from "@material-ui/data-grid";
 import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
-import { MovieContext } from "../../context/movieContext/MovieContext";
-import { deleteMovie, getMovies } from "../../context/movieContext/apiCalls";
-export default function MovieList() {
-  const { movies, dispatch } = useContext(MovieContext);
+import { ListContext } from "../../context/listContext/ListContext";
+import { getLists } from "../../context/listContext/apiCalls";
+export default function ListList() {
+  const { lists, dispatch } = useContext(ListContext);
 
   useEffect(() => {
-    getMovies(dispatch);
+    getLists(dispatch);
   }, [dispatch]);
   // console.log(movies);
-  const handleDelete = (id) => {
-    deleteMovie(dispatch, id);
-  };
+   const handleDelete = (id) => {
+  //   deleteMovie(dispatch, id);
+   };
 
   const columns = [
-    { field: "_id", headerName: "ID", width: 90 },
-    {
-      field: "movie",
-      headerName: "Movie",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <div className="productListItem">
-            <img className="productListImg" src={params.row.img} alt="" />
-            {params.row.title}
-          </div>
-        );
-      },
-    },
+    { field: "_id", headerName: "ID", width: 250 },
+    { field: "title", headerName: "Title", width: 250 },
     { field: "genre", headerName: "Genre", width: 150 },
-    { field: "year", headerName: "Year", width: 150 },
-    { field: "limit", headerName: "Age", width: 150 },
+    { field: "type", headerName: "Type", width: 150 },
 
     {
       field: "action",
@@ -61,7 +48,7 @@ export default function MovieList() {
     <div className="productList">
       <DataGrid
         disableSelectionOnClick
-        rows={movies}
+        rows={lists}
         columns={columns}
         pageSize={10}
         rowsPerPageOptions={[5]}

@@ -17,6 +17,7 @@ import NewMovie from "./pages/newMovie/NewMovie";
 import Login from "./pages/login/Login";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext/AuthContext";
+import ListList from "./pages/listList/ListList";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -68,6 +69,18 @@ function App() {
               <Route
                 path="/movies"
                 element={user ? <MovieList /> : <Navigate to="/login" />}
+              />
+              {/* <Route
+                path="/lists/:listId"
+                element={user ? <Movie /> : <Navigate to="/login" />}
+              />
+              <Route
+                path="/newList"
+                element={user ? <NewMovie /> : <Navigate to="/login" />}
+              /> */}
+              <Route
+                path="/lists"
+                element={user ? <ListList /> : <Navigate to="/login" />}
               />
             </Routes>
           </div>
