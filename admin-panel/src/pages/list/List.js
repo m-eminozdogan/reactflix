@@ -1,6 +1,5 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./list.css";
-import { Publish } from "@material-ui/icons";
 import { useContext, useState } from "react";
 import { ListContext } from "../../context/listContext/ListContext";
 import { updateList } from "../../context/listContext/apiCalls";
@@ -12,6 +11,7 @@ export default function List() {
   const [updatedListGenre, setUpdatedListGenre] = useState();
   const [updatedListType, setUpdatedListType] = useState();
   const [updatedList, setUpdateList] = useState(list);
+  const navigate=useNavigate();
   const handleUpdate = (e) => {
     e.preventDefault();
 
@@ -19,6 +19,7 @@ export default function List() {
     updatedList.genre = updatedListGenre;
     updatedList.type = updatedListType;
     updateList(updatedList, dispatch);
+navigate("/lists")
   };
   return (
     <div className="product">

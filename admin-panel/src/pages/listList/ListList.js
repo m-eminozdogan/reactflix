@@ -51,9 +51,9 @@ export default function ListList() {
         rows={lists}
         columns={columns}
         pageSize={10}
-        rowsPerPageOptions={[5]}
+        rowsPerPageOptions={[10]}
         checkboxSelection
-        getRowId={(r) => r._id}
+        getRowId={(row) => row._id}
       />
     </div>
   );

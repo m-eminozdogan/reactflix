@@ -9,24 +9,24 @@ export const getListsSuccess = (lists) => ({
 export const getListsFail = () => ({
   type: "GET_LISTS_FAIL",
 });
-// // CREATE MOVIE
-// export const createMovieStart = () => ({
-//   type: "CREATE_MOVIE_START",
-// });
-// export const createMovieSuccess = (movie) => ({
-//   type: "CREATE_MOVIE_SUCCESS",
-//   payload: movie,
-// });
-// export const createMovieFail = () => ({
-//   type: "CREATE_MOVIE_FAIL",
-// });
-// // UPDATE MOVIE
+// CREATE MOVIE
+export const createListStart = () => ({
+  type: "CREATE_LIST_START",
+});
+export const createListSuccess = (list) => ({
+  type: "CREATE_LIST_SUCCESS",
+  payload: list,
+});
+export const createListFail = () => ({
+  type: "CREATE_LIST_FAIL",
+});
+// UPDATE MOVIE
 export const updateListStart = () => ({
   type: "UPDATE_LIST_START",
 });
-export const updateListSuccess = (movie) => ({
+export const updateListSuccess = (list) => ({
   type: "UPDATE_LIST_SUCCESS",
-  payload: movie,
+  payload: list,
 });
 export const updateListFail = () => ({
   type: "UPDATE_LIST_FAIL",

@@ -3,7 +3,7 @@ const { query } = require("express");
 const List = require("../models/List");
 const verify = require("../verifyToken");
 
-//CREATE MOVIE list
+//CREATE LIST
 router.post("/", verify, async (req, res) => {
   if (req.user.isAdmin) {
     const newList = new List(req.body);
@@ -17,8 +17,25 @@ router.post("/", verify, async (req, res) => {
     res.status(403).json("u'r not allowed to add list");
   }
 });
+//UPDATE LIST
+router.put("/:id", verify, async (req, res) => {
+  if (req.user.isAdmin) {
+    try {
+      const updatedList = await List.findByIdAndUpdate(
+        req.params.id,
+        { $set: req.body },
+        { new: true }
+      );
+      res.status(200).json(updatedList);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  } else {
+    res.status(403).json("u'r not allowed to update list");
+  }
+});
 
-//DELETE MOVIE list
+//DELETE LIST
 router.delete("/:id", verify, async (req, res) => {
   if (req.user.isAdmin) {
     try {
@@ -32,7 +49,7 @@ router.delete("/:id", verify, async (req, res) => {
   }
 });
 
-//GET MOVIE list
+//GET LIST
 router.get("/", async (req, res) => {
   const typeQuery = req.query.type;
   const genreQuery = req.query.genre;
