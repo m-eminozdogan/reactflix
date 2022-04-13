@@ -2,7 +2,7 @@ import { InfoOutlined, PlayArrow } from "@material-ui/icons";
 import { useEffect, useState } from "react";
 import "./featured.scss";
 import axios from "axios";
-const Featured = ({ type }) => {
+const Featured = ({ type, setGenre }) => {
   const [content, setContent] = useState({});
 
   useEffect(() => {
@@ -11,7 +11,7 @@ const Featured = ({ type }) => {
         const res = await axios.get(`/movies/random?type=${type}`, {
           headers: {
             token:
-              "bariyer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2NhNzFjMDdmZDhkMzdiOWM4NDQ2YyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0ODM3NzcxMSwiZXhwIjoxNjQ4NjM2OTExfQ.iYx4nrjnMqwI9eySWTroi10YbiauopQYbM2n382IhRY",
+              "bariyer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2NhNzFjMDdmZDhkMzdiOWM4NDQ2YyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0OTU4NTkxMSwiZXhwIjoxNjQ5ODQ1MTExfQ.kQRg1Q2no7YuOMKTEIFE8gDLQPtci_ijc-Ko7COXX00",
           },
         });
         setContent(res.data[0]);
@@ -26,7 +26,11 @@ const Featured = ({ type }) => {
       {type && (
         <div className="category">
           <span>{type === "movies" ? "Movies" : "Series"}</span>
-          <select name="genre" id="genre">
+          <select
+            name="genre"
+            id="genre"
+            onChange={(e) => setGenre(e.target.value)}
+          >
             <option>Genre</option>
             <option value="adventure">Adventure</option>
             <option value="comedy">Comedy</option>
@@ -41,12 +45,14 @@ const Featured = ({ type }) => {
             <option value="animation">Animation</option>
             <option value="drama">Drama</option>
             <option value="documentary">Documentary</option>
+            <option value="action">Action</option>
           </select>
         </div>
       )}
+    
       <img src={content.img} alt="" />
       <div className="info">
-        <img src={content.imgTitle} alt="" />
+        {/* <img src={content.imgTitle} alt="" /> */}
         <span className="desc">{content.desc}</span>
         <div className="buttons">
           <button className="play">
