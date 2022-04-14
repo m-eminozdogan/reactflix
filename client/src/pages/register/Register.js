@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import "./register.scss";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -10,6 +10,10 @@ export default function Register() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const usernameRef = useRef();
+  const handleNav = () => {
+    console.log("geldi");
+    navigate("/login");
+  };
   const handleStart = () => {
     setEmail(emailRef.current.value);
   };
@@ -34,12 +38,7 @@ export default function Register() {
             alt=""
           />
 
-          <button
-            className="loginButton"
-            onClick={() => {
-              <Navigate to="/login" />;
-            }}
-          >
+          <button className="loginButton" onClick={handleNav}>
             Sign In
           </button>
         </div>
